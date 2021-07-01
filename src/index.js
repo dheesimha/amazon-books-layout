@@ -28,48 +28,56 @@ import "./index.css";
 //   return <p>This is a message</p>;
 // };
 
+const firstBook = {
+  img: "https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UY327_FMwebp_QL65_.jpg",
+  author: "Paulo Coleho",
+  title: "The Alchemist",
+};
+
+const secondBook = {
+  img: "https://m.media-amazon.com/images/I/710jnzKlDTL._AC_UY327_FMwebp_QL65_.jpg",
+  author: "Jeff Keller",
+  title: "Attitude Is Everything ",
+};
+
 function BookList() {
   return (
     <section className="bookList">
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
+      <Book
+        img={firstBook.img}
+        author={firstBook.author}
+        title={firstBook.title}
+      >
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam
+          ab animi porro voluptas a mollitia dolorem eos at laboriosam.
+        </p>
+      </Book>
+      <Book
+        img={secondBook.img}
+        author={secondBook.author}
+        title={secondBook.title}
+      />
     </section>
   );
 }
 
-const Book = () => {
+// const title = "The Alchemist";
+// const author = "Paulo Coelho";
+// const img =
+//   "https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UY327_FMwebp_QL65_.jpg";
+
+const Book = (props) => {
+  const { img, title, author, children } = props;
+  console.log(props);
   return (
     <article className="book">
-      {" "}
-      <Image />
-      <Title />
-      <Author />
+      <img src={img} alt="" />
+      <h1>{title}</h1>
+      <h4>{author}</h4>
+      {children}
     </article>
   );
-};
-
-const Image = () => (
-  <img
-    src="https://m.media-amazon.com/images/I/51MtWwKWcuL._AC_SX360_SY240_QL70_.jpg"
-    alt=""
-  />
-);
-
-const Title = () => (
-  <h1>
-    World's Greatest Entrepreneurs: Biographies of Inspirational Personalities
-    For Kids
-  </h1>
-);
-
-const Author = () => {
-  return <p>Wonder House Books</p>;
 };
 
 ReactDom.render(<BookList />, document.getElementById("root"));
