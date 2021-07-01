@@ -5,18 +5,21 @@ import "./index.css";
 
 const books = [
   {
+    id: 1,
     img: "https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UY327_FMwebp_QL65_.jpg",
     author: "Paulo Coleho",
     title: "The Alchemist",
   },
 
   {
+    id: 2,
     img: "https://m.media-amazon.com/images/I/710jnzKlDTL._AC_UY327_FMwebp_QL65_.jpg",
     author: "Jeff Keller",
     title: "Attitude Is Everything ",
   },
 
   {
+    id: 3,
     img: "https://m.media-amazon.com/images/I/71rywJTxKGS._AC_UY327_FMwebp_QL65_.jpg",
     author: "William Walker Atkinson ",
     title: "Memory: How To Develop, Train, And Use It",
@@ -26,7 +29,7 @@ const books = [
 function BookList() {
   return (
     <section className="bookList">
-      {books.map((book) => {
+      {books.map((book, index) => {
         // console.log(book);
         // const { img, title, author } = book;
         return (
@@ -35,21 +38,42 @@ function BookList() {
           //   <h6>{author}</h6>
           // </div>
 
-          <Book book={book}></Book>
+          <Book key={book.id} {...book}></Book>
         );
       })}
     </section>
   );
 }
 
-const Book = (props) => {
-  const { img, title, author } = props.book;
-  console.log(props);
+const Book = ({ img, title, author }) => {
+  // const { img, title, author } = props;
+  // console.log(props);
+  const clickHandler = (e) => {
+    console.log(e);
+    console.log(e.target);
+    alert("Hello world");
+  };
+
+  const complexExample = (author) => {
+    console.log(author);
+  };
   return (
-    <article className="book">
+    <article
+      className="book"
+      onMouseOver={() => {
+        console.log(title);
+      }}
+    >
       <img src={img} alt="" />
-      <h1>{title}</h1>
+      <h1 onClick={() => console.log(title)}>{title}</h1>
       <h4>{author}</h4>
+      <button type="button" onClick={clickHandler}>
+        Reference Example
+      </button>
+
+      <button type="button" onClick={() => complexExample(author)}>
+        More Complex Example
+      </button>
     </article>
   );
 };
