@@ -2,31 +2,6 @@ import react from "react";
 import React from "react";
 import ReactDom from "react-dom";
 import "./index.css";
-// function Greeting() {
-//   return <h4>Hello world</h4>;
-// }
-
-// const Greeting = () => {
-// <ReactFragment>
-//   return React.createElement("h1", {}, "Hello world");
-// </ReactFragment>;
-// };
-
-// function BookList() {
-//   return (
-//     <section>
-//       {/* <h2>Dheemanth</h2>
-//       <Person />
-//       <Message /> */}
-
-//     </section>
-//   );
-// }
-
-// const Person = () => <h2>Dheemanth</h2>;
-// const Message = () => {
-//   return <p>This is a message</p>;
-// };
 
 const books = [
   {
@@ -40,26 +15,35 @@ const books = [
     author: "Jeff Keller",
     title: "Attitude Is Everything ",
   },
+
+  {
+    img: "https://m.media-amazon.com/images/I/71rywJTxKGS._AC_UY327_FMwebp_QL65_.jpg",
+    author: "William Walker Atkinson ",
+    title: "Memory: How To Develop, Train, And Use It",
+  },
 ];
 
-const names = ["Dhee", "Zoko", "Sahas"];
-const newName = names.map((name) => {
-  return <h1>{name}</h1>;
-  console.log(name);
-});
-
-console.log(newName);
 function BookList() {
-  return <section className="bookList">{names}</section>;
+  return (
+    <section className="bookList">
+      {books.map((book) => {
+        // console.log(book);
+        // const { img, title, author } = book;
+        return (
+          // <div>
+          //   <h3>{title}</h3>
+          //   <h6>{author}</h6>
+          // </div>
+
+          <Book book={book}></Book>
+        );
+      })}
+    </section>
+  );
 }
 
-// const title = "The Alchemist";
-// const author = "Paulo Coelho";
-// const img =
-//   "https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UY327_FMwebp_QL65_.jpg";
-
 const Book = (props) => {
-  const { img, title, author } = props;
+  const { img, title, author } = props.book;
   console.log(props);
   return (
     <article className="book">
